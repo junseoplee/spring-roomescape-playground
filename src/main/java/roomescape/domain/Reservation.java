@@ -17,6 +17,10 @@ public class Reservation {
     this.time = time;
   }
 
+  public static Reservation createNewReservation (Long id, Reservation reservation) {
+    return new Reservation(id, reservation.name, reservation.date, reservation.time);
+  }
+
   public long getId() {
     return id;
   }
@@ -28,6 +32,7 @@ public class Reservation {
   public LocalDate getDate() {
     return date;
   }
+
   public LocalTime getTime() {
     return time;
   }
