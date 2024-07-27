@@ -1,13 +1,18 @@
 package roomescape.domain;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Reservation {
 
   private final Long id;
+  @NotBlank
   private final String name;
+  @NotNull
   private final LocalDate date;
+  @NotNull
   private final LocalTime time;
 
   public Reservation(Long id, String name, LocalDate date, LocalTime time) {
