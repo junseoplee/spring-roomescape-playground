@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
 public class Reservation {
 
@@ -22,7 +23,7 @@ public class Reservation {
     this.time = time;
   }
 
-  public static Reservation createNewReservation(Long id, Reservation reservation) {
+  public static Reservation of(Long id, Reservation reservation) {
     return new Reservation(id, reservation.name, reservation.date, reservation.time);
   }
 
@@ -40,5 +41,21 @@ public class Reservation {
 
   public LocalTime getTime() {
     return time;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Reservation reservation)) {
+      return false;
+    }
+    return Objects.equals(id, reservation.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
   }
 }

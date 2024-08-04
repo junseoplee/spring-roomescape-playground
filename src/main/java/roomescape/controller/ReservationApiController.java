@@ -39,7 +39,7 @@ public class ReservationApiController {
       throw new IllegalArgumentException(ErrorMessage.INVALID_ARGUMENT.getMessage());
     }
     Reservation newReservation
-        = Reservation.createNewReservation(index.getAndIncrement(), reservation);
+        = Reservation.of(index.getAndIncrement(), reservation);
     reservations.add(newReservation);
     return ResponseEntity.created(URI.create("/reservations/" + newReservation.getId()))
                          .body(newReservation);
