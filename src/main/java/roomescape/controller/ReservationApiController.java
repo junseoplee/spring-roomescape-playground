@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import roomescape.domain.Reservation;
 import roomescape.exception.ErrorMessage;
-import roomescape.exception.NotFoundReservationException;
+import roomescape.exception.ReservationNotFoundException;
 
 @RestController // @Controller + @ResponseBody 특정 클래스가 RESTful 웹 서비스의 컨트롤러 역할을 하도록 지정한다
 public class ReservationApiController {
@@ -58,7 +58,7 @@ public class ReservationApiController {
         reservations.stream()
                     .filter(reservation -> Objects.equals(reservation.getId(), id))
                     .findAny()
-                    .orElseThrow(NotFoundReservationException::new);
+                    .orElseThrow(ReservationNotFoundException::new);
     reservations.remove(deletingReservation);
     return ResponseEntity.noContent().build();
     // DELETE /reservations/{id} 요청이 들어왔을 때 지정된 id의 예약 정보를 삭제한다
