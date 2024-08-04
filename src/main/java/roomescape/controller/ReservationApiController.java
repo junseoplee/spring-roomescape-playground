@@ -26,7 +26,7 @@ public class ReservationApiController {
 
   @GetMapping("/reservations")
   public ResponseEntity<List<Reservation>> readReservation() {
-    return ResponseEntity.ok().body(reservations);
+    return ResponseEntity.ok(reservations);
     // GET /reservations 요청이 들어왔을 때 저장된 모든 예약 정보를 반환한다
     // ResponseEntity 는 HTTP 응답을 위한 클래스이다. ok() 메소드는 200 OK 상태 코드를 반환한다
     // body() 메서드는 응답 본문에 들어갈 데이터를 설정한다. 반환할 데이터는 reservations 필드에 저장된 예약 정보이다
@@ -42,7 +42,6 @@ public class ReservationApiController {
         = Reservation.createNewReservation(index.getAndIncrement(), reservation);
     reservations.add(newReservation);
     return ResponseEntity.created(URI.create("/reservations/" + newReservation.getId()))
-                         .header("Content-Type", "application/json")
                          .body(newReservation);
     // POST /reservations 요청이 들어왔을 때 새로운 예약 정보를 저장한다
     // @RequestBody 어노테이션은 요청 본문에 들어있는 데이터를 Reservation 객체로 변환한다
