@@ -7,14 +7,14 @@ import java.time.LocalTime;
 
 public class ReservationRequestDto {
 
-  @NotBlank(message = "ErrorMessage.EMPTY_NAME.getMessage()")
-  private String name;
+  @NotBlank(message = "[ERROR] 이름이 비어 있습니다.")
+  private final String name;
 
-  @NotNull(message = "ErrorMessage.EMPTY_DATE.getMessage()")
-  private LocalDate date;
+  @NotNull(message = "[ERROR] 날짜가 비어 있습니다.")
+  private final LocalDate date;
 
-  @NotNull(message = "ErrorMessage.EMPTY_TIME.getMessage()")
-  private LocalTime time;
+  @NotNull(message = "[ERROR] 시간이 비어 있습니다.")
+  private final LocalTime time;
 
   public ReservationRequestDto(String name, LocalDate date, LocalTime time) {
     this.name = name;

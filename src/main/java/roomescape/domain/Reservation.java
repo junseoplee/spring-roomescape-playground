@@ -1,7 +1,5 @@
 package roomescape.domain;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
@@ -11,13 +9,10 @@ public class Reservation {
 
   private final Long id;
 
-  @NotBlank(message = "ErrorMessage.EMPTY_NAME.getMessage()")
   private final String name;
 
-  @NotNull(message = "ErrorMessage.EMPTY_DATE.getMessage()")
   private final LocalDate date;
 
-  @NotNull(message = "ErrorMessage.EMPTY_TIME.getMessage()")
   private final LocalTime time;
 
   public Reservation(Long id, String name, LocalDate date, LocalTime time) {
