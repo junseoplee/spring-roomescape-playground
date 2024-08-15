@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import roomescape.domain.Reservation;
-import roomescape.domain.repository.ReservationRepository;
+import roomescape.infrastructure.ReservationRepository;
 import roomescape.exception.ReservationNotFoundException;
 
 @Transactional

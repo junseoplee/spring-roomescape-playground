@@ -1,4 +1,4 @@
-package roomescape.domain.repository;
+package roomescape.infrastructure;
 
 import java.sql.PreparedStatement;
 import java.util.List;
