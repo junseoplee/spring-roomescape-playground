@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
+import roomescape.exception.ErrorMessage;
 
 public class Reservation {
 
@@ -20,6 +21,7 @@ public class Reservation {
   private final LocalTime time;
 
   public Reservation(Long id, String name, LocalDate date, LocalTime time) {
+    validateDate(date);
     this.id = id;
     this.name = name;
     this.date = date;
@@ -28,6 +30,12 @@ public class Reservation {
 
   public static Reservation of(Long id, Reservation reservation) {
     return new Reservation(id, reservation.name, reservation.date, reservation.time);
+  }
+
+  private void validateDate(LocalDate date) {
+    if (date.isBefore(LocalDate.now())) {
+      throw new IllegalArgumentException(ErrorMessage.INVALID_DATE.getMessage());
+    }
   }
 
   public Long getId() {

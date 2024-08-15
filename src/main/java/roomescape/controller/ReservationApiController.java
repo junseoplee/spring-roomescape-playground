@@ -5,7 +5,6 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import roomescape.domain.Reservation;
 import roomescape.dto.request.ReservationRequestDto;
 import roomescape.dto.response.ReservationResponseDto;
-import roomescape.exception.ErrorMessage;
 import roomescape.exception.ReservationNotFoundException;
 import roomescape.service.ReservationDto;
 import roomescape.service.ReservationService;
@@ -40,11 +38,7 @@ public class ReservationApiController {
   }
 
   @PostMapping("/reservations")
-  public ResponseEntity<ReservationResponseDto> createReservation(@Valid @RequestBody final ReservationRequestDto reservationRequest, BindingResult bindingResult) {
-    if (bindingResult.hasErrors()) {
-      throw new IllegalArgumentException(ErrorMessage.INVALID_ARGUMENT.getMessage());
-    }
-
+  public ResponseEntity<ReservationResponseDto> createReservation(@Valid @RequestBody final ReservationRequestDto reservationRequest) {
     Reservation reservation = new Reservation(
         null,
         reservationRequest.getName(),

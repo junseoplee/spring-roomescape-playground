@@ -17,4 +17,24 @@ public class ErrorResponseDto {
     this.message = message;
     this.path = path;
   }
+
+  public LocalDateTime getTimestamp() {
+    return timestamp;
+  }
+
+  public int getStatus() {
+    return status;
+  }
+
+  public String getError() {
+    return error;
+  }
+
+  public String getMessage() {
+    return message;
+  }
+
+  public String getPath() {
+    return path;
+  }
 }
