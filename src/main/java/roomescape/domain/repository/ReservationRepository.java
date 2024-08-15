@@ -24,7 +24,7 @@ public class ReservationRepository { // reservation 테이블에 대한 CRUD를 
       resultSet.getLong("id"),
       resultSet.getString("name"),
       resultSet.getDate("date").toLocalDate(),
-      resultSet.getTime("time").toLocalTime()); // RowMapper를 이용해 ResultSet에서 원하는 데이터를 추출
+      resultSet.getTime("time").toLocalTime());
 
   public List<Reservation> findAll() {
     final String sql = "select id, name, date, time from reservation";

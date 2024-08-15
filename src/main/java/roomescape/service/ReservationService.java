@@ -8,7 +8,7 @@ import roomescape.domain.Reservation;
 import roomescape.domain.repository.ReservationRepository;
 import roomescape.exception.ReservationNotFoundException;
 
-@Transactional // 트랜잭션 관리
+@Transactional
 @Service // 해당 클래스를 Bean 으로 인식, 의존성 주입이 가능하다
 public class ReservationService {
 
