@@ -3,7 +3,6 @@ package roomescape.controller;
 import jakarta.validation.Valid;
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import roomescape.domain.Reservation;
 import roomescape.dto.request.ReservationRequestDto;
 import roomescape.dto.response.ReservationResponseDto;
-import roomescape.exception.ReservationNotFoundException;
 import roomescape.service.ReservationDto;
 import roomescape.service.ReservationService;
 
