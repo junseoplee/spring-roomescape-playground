@@ -8,15 +8,16 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import roomescape.domain.Reservation;
+import roomescape.domain.ReservationRepository;
 
 @Repository
-public class ReservationRepository { // reservation 테이블에 대한 CRUD를 담당
+public class JdbcReservationRepository implements ReservationRepository {
 
   private static final int NO_ROWS_AFFECTED = 0;
 
   private final JdbcTemplate jdbcTemplate;
 
-  public ReservationRepository(JdbcTemplate jdbcTemplate) {
+  public JdbcReservationRepository(JdbcTemplate jdbcTemplate) {
     this.jdbcTemplate = jdbcTemplate;
   }
 
@@ -24,13 +25,16 @@ public class ReservationRepository { // reservation 테이블에 대한 CRUD를 
       resultSet.getLong("id"),
       resultSet.getString("name"),
       resultSet.getDate("date").toLocalDate(),
-      resultSet.getTime("time").toLocalTime());
+      resultSet.getTime("time").toLocalTime()
+  );
 
+  @Override
   public List<Reservation> findAll() {
     final String sql = "select id, name, date, time from reservation";
     return jdbcTemplate.query(sql, reservationRowMapper);
   }
 
+  @Override
   public Reservation save(final Reservation reservation) {
     final String sql = "insert into reservation (name, date, time) values (?, ?, ?)";
     KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -44,6 +48,7 @@ public class ReservationRepository { // reservation 테이블에 대한 CRUD를 
     return Reservation.of(keyHolder.getKey().longValue(), reservation);
   }
 
+  @Override
   public boolean deleteById(Long id) {
     final String sql = "delete from reservation where id = ?";
     return jdbcTemplate.update(sql, id) > NO_ROWS_AFFECTED;

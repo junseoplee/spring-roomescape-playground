@@ -33,7 +33,7 @@ public class ReservationApiController {
     List<ReservationResponseDto> response =
         reservations.stream()
                     .map(ReservationResponseDto::from)
-                    .collect(Collectors.toList());
+                    .toList();
     return ResponseEntity.ok(response);
   }
 
