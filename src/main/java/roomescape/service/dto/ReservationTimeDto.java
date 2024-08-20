@@ -21,7 +21,7 @@ public class ReservationTimeDto {
   }
 
   public ReservationTime toEntity() {
-    return new ReservationTime(null, time);
+    return new ReservationTime(id, time);
   }
 
   public Long getId() {
