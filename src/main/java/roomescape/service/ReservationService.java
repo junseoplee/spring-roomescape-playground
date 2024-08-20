@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import roomescape.domain.Reservation;
 import roomescape.domain.ReservationRepository;
 import roomescape.exception.ReservationNotFoundException;
+import roomescape.service.dto.ReservationDto;
 
 @Transactional
 @Service // 해당 클래스를 Bean 으로 인식, 의존성 주입이 가능하다
@@ -22,7 +23,7 @@ public class ReservationService {
   public List<ReservationDto> findAll() {
     return reservationRepository.findAll().stream()
                                 .map(ReservationDto::from)
-                                .collect(Collectors.toList());
+                                .toList();
   }
 
   public ReservationDto save(Reservation reservation) {
