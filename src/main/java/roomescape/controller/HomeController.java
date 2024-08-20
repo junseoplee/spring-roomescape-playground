@@ -8,7 +8,7 @@ public class HomeController {
 
   @GetMapping("/reservation")
   public String reservation() {
-    return "reservation";
+    return "new-reservation";
   }
 
   @GetMapping("/time")

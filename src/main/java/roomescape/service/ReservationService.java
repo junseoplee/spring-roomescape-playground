@@ -1,7 +1,6 @@
 package roomescape.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import roomescape.domain.Reservation;
@@ -26,8 +25,14 @@ public class ReservationService {
                                 .toList();
   }
 
-  public ReservationDto save(Reservation reservation) {
-    Reservation savedReservation = reservationRepository.save(reservation);
+  public ReservationDto save(final ReservationDto reservationDto) {
+    Reservation newReservation = new Reservation(
+        reservationDto.getId(),
+        reservationDto.getName(),
+        reservationDto.getDate(),
+        reservationDto.getTime().toEntity()
+    );
+    Reservation savedReservation = reservationRepository.save(newReservation);
     return ReservationDto.from(savedReservation);
   }
 

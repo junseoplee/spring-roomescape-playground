@@ -29,7 +29,7 @@ public class ReservationResponseDto {
         reservationDto.getId(),
         reservationDto.getName(),
         reservationDto.getDate(),
-        reservationDto.getTime()
+        reservationDto.getTime().getTime()
     );
   }
 

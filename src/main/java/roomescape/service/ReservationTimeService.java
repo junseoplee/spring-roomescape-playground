@@ -25,8 +25,16 @@ public class ReservationTimeService {
                                     .map(ReservationTimeDto::from).toList();
   }
 
-  public ReservationTimeDto save(final ReservationTime reservationTime) {
-    ReservationTime savedReservationTime = reservationTimeRepository.save(reservationTime);
+  @Transactional(readOnly = true)
+  public ReservationTimeDto findById(Long id) {
+    return reservationTimeRepository.findById(id)
+                                    .map(ReservationTimeDto::from)
+                                    .orElseThrow(ReservationTimeNotFoundException::new);
+  }
+
+  public ReservationTimeDto save(final ReservationTimeDto reservationTimeDto) {
+    ReservationTime newReservationTime = reservationTimeDto.toEntity();
+    ReservationTime savedReservationTime = reservationTimeRepository.save(newReservationTime);
     return ReservationTimeDto.from(savedReservationTime);
   }
 
