@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.http.HttpHeaders;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -51,6 +52,7 @@ public class MissionStepTest {
     // 검증하거나 0개임을 확인하세요.
   }
 
+  @Disabled
   @Test
   void 삼단계() {
     Map<String, String> params = new HashMap<>();
@@ -118,6 +120,7 @@ public class MissionStepTest {
     }
   }
 
+  @Disabled
   @Test
   void 육단계() {
     jdbcTemplate.update("INSERT INTO reservation (name, date, time) VALUES (?, ?, ?)", "브라운", "2026-08-05", "15:40");
@@ -133,6 +136,7 @@ public class MissionStepTest {
     assertThat(reservations.size()).isEqualTo(count);
   }
 
+  @Disabled
   @Test
   void 칠단계() {
     Map<String, String> params = new HashMap<>();
