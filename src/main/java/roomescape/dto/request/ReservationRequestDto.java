@@ -29,7 +29,7 @@ public class ReservationRequestDto {
     return date;
   }
 
-  public Long getTimeID() {
+  public Long getTimeId() {
     return time;
   }
 }

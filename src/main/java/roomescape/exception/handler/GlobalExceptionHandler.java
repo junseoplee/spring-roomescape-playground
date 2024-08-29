@@ -3,7 +3,6 @@ package roomescape.exception.handler;
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -13,7 +12,7 @@ import roomescape.exception.ReservationNotFoundException;
 import roomescape.exception.ReservationTimeNotFoundException;
 import roomescape.exception.dto.ErrorResponseDto;
 
-@RestControllerAdvice // 전역 예외 처리
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -23,7 +22,7 @@ public class GlobalExceptionHandler {
                             .getAllErrors()
                             .stream()
                             .map(error -> error.getDefaultMessage())
-                            .collect(Collectors.toList());
+                            .toList();
 
     ErrorResponseDto errorResponse = new ErrorResponseDto(
         LocalDateTime.now(),

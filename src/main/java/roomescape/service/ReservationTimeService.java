@@ -22,7 +22,8 @@ public class ReservationTimeService {
   public List<ReservationTimeDto> findAll() {
     return reservationTimeRepository.findAll()
                                     .stream()
-                                    .map(ReservationTimeDto::from).toList();
+                                    .map(ReservationTimeDto::from)
+                                    .toList();
   }
 
   @Transactional(readOnly = true)
@@ -39,7 +40,7 @@ public class ReservationTimeService {
   }
 
   public void deleteById(final Long id) {
-    if (!reservationTimeRepository.deleteByID(id)) {
+    if (!reservationTimeRepository.deleteById(id)) {
       throw new ReservationTimeNotFoundException();
     }
   }
