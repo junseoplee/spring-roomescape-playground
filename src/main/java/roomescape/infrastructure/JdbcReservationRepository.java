@@ -33,13 +33,16 @@ public class JdbcReservationRepository implements ReservationRepository {
   @Override
   public List<Reservation> findAll() {
     final String sql =
-        "select r.id as reservation_id,"
-        + " r.name,"
-        + " r.date,"
-        + "t.id as time_id,"
-        + "t.time as time_value "
-        + "from reservation as r inner join time as t "
-        + "on r.time_id = t.id";
+        """
+        select r.id as reservation_id, 
+        r.name, 
+        r.date,
+        t.id as time_id, 
+        t.time as time_value 
+        from reservation as r 
+        inner join time as t 
+        on r.time_id = t.id
+        """;
     return jdbcTemplate.query(sql, reservationRowMapper);
   }
 
