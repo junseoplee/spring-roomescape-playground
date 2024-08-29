@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import roomescape.domain.ReservationTime;
+import roomescape.domain.ReservationTimeRepository;
 import roomescape.exception.ReservationTimeNotFoundException;
 import roomescape.infrastructure.JdbcReservationTimeRepository;
 import roomescape.service.dto.ReservationTimeDto;
@@ -12,7 +13,7 @@ import roomescape.service.dto.ReservationTimeDto;
 @Service
 public class ReservationTimeService {
 
-  private final JdbcReservationTimeRepository reservationTimeRepository;
+  private final ReservationTimeRepository reservationTimeRepository;
 
   public ReservationTimeService(JdbcReservationTimeRepository reservationTimeRepository) {
     this.reservationTimeRepository = reservationTimeRepository;
