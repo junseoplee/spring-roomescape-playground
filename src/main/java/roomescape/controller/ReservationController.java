@@ -46,8 +46,7 @@ public class ReservationController {
         new ReservationDto(null,
             request.getName(),
             request.getDate(),
-            request.getTimeID(),
-            reservationTimeService.findById(request.getTimeID())
+            reservationTimeService.findById(request.getTimeId())
         )
     );
     ReservationResponseDto response = ReservationResponseDto.from(savedReservation);
