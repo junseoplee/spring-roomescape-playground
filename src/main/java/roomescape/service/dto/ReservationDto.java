@@ -8,14 +8,12 @@ public class ReservationDto {
   private final Long id;
   private final String name;
   private final LocalDate date;
-  private final Long timeId;
   private final ReservationTimeDto time;
 
-  public ReservationDto(Long id, String name, LocalDate date, Long timeId, ReservationTimeDto time) {
+  public ReservationDto(Long id, String name, LocalDate date, ReservationTimeDto time) {
     this.id = id;
     this.name = name;
     this.date = date;
-    this.timeId = timeId;
     this.time = time;
   }
 
@@ -24,8 +22,16 @@ public class ReservationDto {
         reservation.getId(),
         reservation.getName(),
         reservation.getDate(),
-        reservation.getTime().getId(),
         ReservationTimeDto.from(reservation.getTime())
+    );
+  }
+
+  public Reservation toEntity() {
+    return new Reservation(
+        this.id,
+        this.name,
+        this.date,
+        this.time.toEntity()
     );
   }
 
@@ -39,10 +45,6 @@ public class ReservationDto {
 
   public LocalDate getDate() {
     return date;
-  }
-
-  public Long getTimeId() {
-    return timeId;
   }
 
   public ReservationTimeDto getTime() {

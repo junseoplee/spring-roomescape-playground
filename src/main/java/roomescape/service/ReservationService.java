@@ -9,7 +9,7 @@ import roomescape.exception.ReservationNotFoundException;
 import roomescape.service.dto.ReservationDto;
 
 @Transactional
-@Service // 해당 클래스를 Bean 으로 인식, 의존성 주입이 가능하다
+@Service
 public class ReservationService {
 
   private final ReservationRepository reservationRepository;
@@ -26,12 +26,7 @@ public class ReservationService {
   }
 
   public ReservationDto save(final ReservationDto reservationDto) {
-    Reservation newReservation = new Reservation(
-        reservationDto.getId(),
-        reservationDto.getName(),
-        reservationDto.getDate(),
-        reservationDto.getTime().toEntity()
-    );
+    Reservation newReservation = reservationDto.toEntity();
     Reservation savedReservation = reservationRepository.save(newReservation);
     return ReservationDto.from(savedReservation);
   }
