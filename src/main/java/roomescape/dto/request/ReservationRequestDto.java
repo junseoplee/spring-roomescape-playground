@@ -13,12 +13,12 @@ public class ReservationRequestDto {
   private final LocalDate date;
 
   @NotNull(message = "[ERROR] 예약 시간을 선택해야합니다.")
-  private final Long time;
+  private final Long timeId;
 
-  public ReservationRequestDto(String name, LocalDate date, Long time) {
+  public ReservationRequestDto(String name, LocalDate date, Long timeId) {
     this.name = name;
     this.date = date;
-    this.time = time;
+    this.timeId = timeId;
   }
 
   public String getName() {
@@ -30,6 +30,6 @@ public class ReservationRequestDto {
   }
 
   public Long getTimeId() {
-    return time;
+    return timeId;
   }
 }
