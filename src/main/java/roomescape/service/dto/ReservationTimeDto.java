@@ -20,10 +20,6 @@ public class ReservationTimeDto {
     );
   }
 
-  public ReservationTime toEntity() {
-    return new ReservationTime(id, time);
-  }
-
   public Long getId() {
     return id;
   }

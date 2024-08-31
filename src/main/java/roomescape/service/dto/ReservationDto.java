@@ -26,15 +26,6 @@ public class ReservationDto {
     );
   }
 
-  public Reservation toEntity() {
-    return new Reservation(
-        this.id,
-        this.name,
-        this.date,
-        this.time.toEntity()
-    );
-  }
-
   public Long getId() {
     return id;
   }
