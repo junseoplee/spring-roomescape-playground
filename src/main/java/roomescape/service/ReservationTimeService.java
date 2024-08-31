@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import roomescape.domain.ReservationTime;
 import roomescape.domain.ReservationTimeRepository;
+import roomescape.dto.request.ReservationTimeRequestDto;
 import roomescape.exception.ReservationTimeNotFoundException;
 import roomescape.infrastructure.JdbcReservationTimeRepository;
 import roomescape.service.dto.ReservationTimeDto;
@@ -27,15 +28,11 @@ public class ReservationTimeService {
                                     .toList();
   }
 
-  @Transactional(readOnly = true)
-  public ReservationTimeDto findById(Long id) {
-    return reservationTimeRepository.findById(id)
-                                    .map(ReservationTimeDto::from)
-                                    .orElseThrow(ReservationTimeNotFoundException::new);
-  }
-
-  public ReservationTimeDto save(final ReservationTimeDto reservationTimeDto) {
-    ReservationTime newReservationTime = reservationTimeDto.toEntity();
+  public ReservationTimeDto save(final ReservationTimeRequestDto reservationTimeRequestDto) {
+    ReservationTime newReservationTime = new ReservationTime(
+        null,
+        reservationTimeRequestDto.getTime()
+    );
     ReservationTime savedReservationTime = reservationTimeRepository.save(newReservationTime);
     return ReservationTimeDto.from(savedReservationTime);
   }

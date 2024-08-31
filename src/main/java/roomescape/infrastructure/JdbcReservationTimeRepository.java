@@ -2,7 +2,6 @@ package roomescape.infrastructure;
 
 import java.sql.PreparedStatement;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -10,6 +9,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import roomescape.domain.ReservationTime;
 import roomescape.domain.ReservationTimeRepository;
+import roomescape.exception.ReservationTimeNotFoundException;
 
 @Repository
 public class JdbcReservationTimeRepository implements ReservationTimeRepository {
@@ -34,11 +34,12 @@ public class JdbcReservationTimeRepository implements ReservationTimeRepository 
   }
 
   @Override
-  public Optional<ReservationTime> findById(Long id) {
+  public ReservationTime findById(Long id) {
     final String sql = "select id, time from time where id = ?";
     return jdbcTemplate.query(sql, reservationTimeRowMapper, id)
                        .stream()
-                       .findAny();
+                       .findAny()
+                       .orElseThrow(ReservationTimeNotFoundException::new);
   }
 
   @Override
