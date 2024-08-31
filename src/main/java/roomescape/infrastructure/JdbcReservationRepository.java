@@ -51,6 +51,7 @@ public class JdbcReservationRepository implements ReservationRepository {
     final String reservationSql = "insert into reservation (name, date, time_id) "
         + "values (?, ?, ?)";
     KeyHolder reservationKeyHolder = new GeneratedKeyHolder();
+
     jdbcTemplate.update(connection -> {
       PreparedStatement preparedStatement = connection.prepareStatement(reservationSql, new String[]{"id"});
       preparedStatement.setString(1, reservation.getName());
@@ -58,7 +59,10 @@ public class JdbcReservationRepository implements ReservationRepository {
       preparedStatement.setLong(3, reservation.getTime().getId());
       return preparedStatement;
     }, reservationKeyHolder);
-    return Reservation.of(reservationKeyHolder.getKey().longValue(), reservation);
+
+    Long generatedId = reservationKeyHolder.getKey().longValue();
+    
+    return Reservation.of(generatedId, reservation);
   }
 
   @Override
